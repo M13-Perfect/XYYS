@@ -34,7 +34,8 @@ public class SecurityConfig {
                                 "/app/video/list",
                                 "/app/video/banner",
                                 "/app/video/recommend",
-                                "/app/video/detail/**"
+                                "/app/video/detail/**",
+                                "/app/video/play/**"
                         ).permitAll()
                         .requestMatchers("/public/**").permitAll()
                         .anyRequest().authenticated()

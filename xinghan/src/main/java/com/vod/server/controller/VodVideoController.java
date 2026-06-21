@@ -45,7 +45,18 @@ public class VodVideoController {
     public Result<Map<String, Object>> getPlayUrl(
             @PathVariable Long id,
             @RequestParam(required = false, defaultValue = "1") Integer ep) {
-        VodVideo video = vodVideoService.getById(id);
+        VodVideo video = vodVideoService.getOne(
+                new LambdaQueryWrapper<VodVideo>()
+                        .eq(VodVideo::getId, id)
+                        .select(
+                                VodVideo::getId,
+                                VodVideo::getTitle,
+                                VodVideo::getPlayUrl,
+                                VodVideo::getPlayFormat,
+                                VodVideo::getPosterUrl
+                        ),
+                false
+        );
         if (video == null) {
             return Result.error("该视频不存在或已下架");
         }
