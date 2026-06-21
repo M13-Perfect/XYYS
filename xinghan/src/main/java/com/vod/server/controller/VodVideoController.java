@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,18 +41,67 @@ public class VodVideoController {
         return video != null ? Result.success(video) : Result.error("视频不存在");
     }
     @GetMapping("/play/{id}")
-    @Operation(summary = "获取视频播放地址（前期免费放开模式）")
-    public Result<Map<String, String>> getPlayUrl(@PathVariable Long id) {
+    @Operation(summary = "获取视频播放地址（按集返回当前播放地址）")
+    public Result<Map<String, Object>> getPlayUrl(
+            @PathVariable Long id,
+            @RequestParam(required = false, defaultValue = "1") Integer ep) {
         VodVideo video = vodVideoService.getById(id);
         if (video == null) {
             return Result.error("该视频不存在或已下架");
         }
-        Map<String, String> result = new HashMap<>();
+        List<Map<String, Object>> episodes = parseEpisodes(video.getPlayUrl());
+        if (episodes.isEmpty()) {
+            return Result.error("暂无可播放地址");
+        }
+
+        int targetEp = ep == null || ep < 1 || ep > episodes.size() ? 1 : ep;
+        Map<String, Object> currentEpisode = episodes.get(targetEp - 1);
+
+        Map<String, Object> result = new HashMap<>();
         result.put("title", video.getTitle());
-        result.put("playUrl", video.getPlayUrl());
+        result.put("currentEp", targetEp);
+        result.put("currentUrl", currentEpisode.get("url"));
+        result.put("episodes", episodes.stream()
+                .map(item -> {
+                    Map<String, Object> episode = new HashMap<>();
+                    episode.put("index", item.get("index"));
+                    episode.put("name", item.get("name"));
+                    return episode;
+                })
+                .toList());
         result.put("format", video.getPlayFormat());
         result.put("posterUrl", video.getPosterUrl());
         return Result.success(result);
+    }
+
+    private List<Map<String, Object>> parseEpisodes(String playUrlRaw) {
+        List<Map<String, Object>> episodes = new ArrayList<>();
+        if (playUrlRaw == null || playUrlRaw.trim().isEmpty()) {
+            return episodes;
+        }
+
+        String[] parts = playUrlRaw.split("#");
+        for (String part : parts) {
+            String item = part == null ? "" : part.trim();
+            if (item.isEmpty()) {
+                continue;
+            }
+
+            String[] pair = item.split("\\$", 2);
+            String name = pair.length > 1 ? pair[0].trim() : String.valueOf(episodes.size() + 1);
+            String url = pair.length > 1 ? pair[1].trim() : pair[0].trim();
+            if (url.isEmpty()) {
+                continue;
+            }
+
+            Map<String, Object> episode = new HashMap<>();
+            int index = episodes.size() + 1;
+            episode.put("index", index);
+            episode.put("name", name.isEmpty() ? String.format("%02d", index) : name);
+            episode.put("url", url);
+            episodes.add(episode);
+        }
+        return episodes;
     }
     @GetMapping("/banner")
     @Operation(summary = "首页轮播图海报")
