@@ -12,7 +12,6 @@
 
     <view class="mini-tabs">
       <view class="tab-item" v-for="nav in quickNavs" :key="nav.id" @click="goCategory(nav.name)">
-        <text class="tab-icon">{{ nav.icon }}</text>
         <text class="tab-text">{{ nav.name }}</text>
       </view>
     </view>
@@ -48,10 +47,10 @@ import request from '@/utils/request.js';
 const bannerList = ref([]);
 const videoList = ref([]);
 const quickNavs = ref([
-  { id: 1, name: '电影', icon: '🎬' },
-  { id: 2, name: '剧集', icon: '📺' },
-  { id: 3, name: '动漫', icon: '🧩' },
-  { id: 4, name: '综艺', icon: '🎤' }
+  { id: 1, name: '电影' },
+  { id: 2, name: '剧集' },
+  { id: 3, name: '动漫' },
+  { id: 4, name: '综艺' }
 ]);
 
 const pageNum = ref(1);
@@ -110,20 +109,19 @@ const goCategory = (typeName) => uni.navigateTo({ url: `/pages/video/category?ty
 .banner-img { width: 100%; height: 100%; }
 
 .mini-tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14rpx; padding: 20rpx 18rpx; }
-.tab-item { background: #161c29; border: 1rpx solid #222b3b; border-radius: 12rpx; padding: 16rpx 0; display: flex; flex-direction: column; align-items: center; }
-.tab-icon { font-size: 30rpx; }
-.tab-text { color: #c5cede; font-size: 22rpx; margin-top: 6rpx; }
+.tab-item { background: #161c29; border-radius: 12rpx; padding: 18rpx 0; display: flex; align-items: center; justify-content: center; }
+.tab-text { color: #c5cede; font-size: 24rpx; }
 
 .video-section { padding: 0 18rpx 24rpx; }
 .section-title { font-size: 34rpx; font-weight: 700; margin-bottom: 16rpx; }
 .list-wrapper { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14rpx; }
-.video-card { background: #141a27; border-radius: 10rpx; overflow: hidden; border: 1rpx solid #20293a; }
+.video-card { background: #141a27; border-radius: 10rpx; overflow: hidden; }
 .cover-wrap { position: relative; }
 .cover { width: 100%; height: 190rpx; }
-.badge { position: absolute; right: 8rpx; top: 8rpx; background: #18d96b; color: #fff; font-size: 18rpx; padding: 2rpx 8rpx; border-radius: 6rpx; }
+.badge { position: absolute; right: 8rpx; top: 8rpx; background: #6f8fdd; color: #fff; font-size: 18rpx; padding: 2rpx 8rpx; border-radius: 6rpx; }
 .title { display: block; color: #e9edf5; font-size: 22rpx; padding: 10rpx 10rpx 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .desc { display: block; color: #7f8ca3; font-size: 20rpx; padding: 6rpx 10rpx 10rpx; }
 .load-status { text-align: center; color: #71809c; font-size: 22rpx; padding: 20rpx 0; }
 
-.go-top { position: fixed; right: 24rpx; bottom: 120rpx; width: 64rpx; height: 64rpx; background: #18d96b; color: #fff; border-radius: 50%; text-align: center; line-height: 64rpx; font-size: 34rpx; z-index: 1000; box-shadow: 0 6rpx 20rpx rgba(24, 217, 107, 0.35); }
+.go-top { position: fixed; right: 24rpx; bottom: 120rpx; width: 64rpx; height: 64rpx; background: #6f8fdd; color: #fff; border-radius: 50%; text-align: center; line-height: 64rpx; font-size: 34rpx; z-index: 1000; box-shadow: 0 6rpx 20rpx rgba(111, 143, 221, 0.32); }
 </style>

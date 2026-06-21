@@ -2,7 +2,6 @@
   <view class="nav-container" :class="{ transparent: isTransparent }">
     <view class="nav-left">
       <view class="logo-box" @click="goHome">
-        <text class="logo-icon">🎬</text>
         <text class="logo-text">星瀚影视</text>
       </view>
 
@@ -22,7 +21,7 @@
       </view>
 
       <view class="icon-btn" @click="openLoginDialog">
-        <text class="icon-text">{{ isLogin ? '👤' : '登录' }}</text>
+        <text class="icon-text">{{ isLogin ? '我的' : '登录' }}</text>
       </view>
 
       <view class="app-btn">APP</view>
@@ -136,7 +135,6 @@ const submitLogin = async () => {
 .nav-container {
   height: 96rpx;
   background: #0d1018;
-  border-bottom: 1rpx solid #20242e;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -151,26 +149,26 @@ const submitLogin = async () => {
   background: linear-gradient(to bottom, rgba(13, 16, 24, 0.94), rgba(13, 16, 24, 0));
 }
 .nav-left,.nav-right { display: flex; align-items: center; }
-.logo-text { font-size: 34rpx; color: #18d96b; font-weight: 700; margin-right: 30rpx; }
+.logo-text { font-size: 34rpx; color: #6f8fdd; font-weight: 700; margin-right: 30rpx; }
 .menu-list { display: flex; gap: 22rpx; }
 .menu-item { color: #a9b0bf; font-size: 24rpx; }
-.menu-item.active { color: #18d96b; }
+.menu-item.active { color: #6f8fdd; }
 .search-box { width: 190rpx; height: 52rpx; border-radius: 10rpx; background: #1a1f2b; display: flex; align-items: center; padding: 0 16rpx; margin-right: 14rpx; }
 .search-placeholder { color: #667085; font-size: 22rpx; }
 .icon-btn { background: #1a1f2b; border-radius: 8rpx; height: 52rpx; padding: 0 16rpx; display: flex; align-items: center; margin-right: 12rpx; }
 .icon-text { color: #d4d8e2; font-size: 22rpx; }
-.app-btn { background: #18d96b; color: #fff; font-size: 22rpx; border-radius: 8rpx; height: 52rpx; line-height: 52rpx; padding: 0 18rpx; }
+.app-btn { background: #6f8fdd; color: #fff; font-size: 22rpx; border-radius: 8rpx; height: 52rpx; line-height: 52rpx; padding: 0 18rpx; }
 
 .mask { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.55); z-index: 1001; display: flex; align-items: center; justify-content: center; }
-.login-dialog { width: 640rpx; background: #10151f; border-radius: 14rpx; padding: 28rpx; border: 1rpx solid #222839; }
+.login-dialog { width: 640rpx; background: #10151f; border-radius: 14rpx; padding: 28rpx; }
 .dialog-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18rpx; }
 .dialog-title { color: #fff; font-size: 36rpx; font-weight: 600; }
 .dialog-close { color: #c6ccda; font-size: 42rpx; }
 .input-group { background: #171e2b; border-radius: 10rpx; margin-bottom: 16rpx; }
 .input-item { height: 84rpx; color: #fff; padding: 0 20rpx; font-size: 28rpx; }
 .ph-color { color: #697186; }
-.submit-btn { margin-top: 8rpx; background: #18d96b; color: #fff; border-radius: 10rpx; font-size: 30rpx; }
+.submit-btn { margin-top: 8rpx; background: #6f8fdd; color: #fff; border-radius: 10rpx; font-size: 30rpx; }
 .submit-btn::after { border: none; }
 .dialog-footer { margin-top: 16rpx; display: flex; justify-content: space-between; }
-.link { color: #18d96b; font-size: 22rpx; }
+.link { color: #6f8fdd; font-size: 22rpx; }
 </style>

@@ -163,22 +163,22 @@ const goDetail = (id) => {
 .title { font-size: 64rpx; font-weight: bold; margin-bottom: 30rpx; display: block; }
 .tags-row { display: flex; align-items: center; flex-wrap: wrap; margin-bottom: 30rpx; font-size: 24rpx; }
 .tag { padding: 4rpx 12rpx; border-radius: 6rpx; margin-right: 16rpx; font-weight: bold; }
-.tag.year { background-color: #f39c12; color: #fff; }
-.tag.type { background-color: #00d26a; color: #fff; }
+.tag.year { background-color: #c8a15a; color: #fff; }
+.tag.type { background-color: #6f8fdd; color: #fff; }
 .tag-text { color: #999; margin-right: 20rpx; }
 .meta-line { color: #bbb; font-size: 26rpx; line-height: 1.8; display: block; }
 .truncate-2 { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
 .action-row { display: flex; align-items: center; margin-top: 20rpx; }
-.play-btn { background-color: #00d26a; color: #fff; font-size: 30rpx; font-weight: bold; padding: 18rpx 40rpx; border-radius: 12rpx; display: flex; align-items: center; }
+.play-btn { background-color: #6f8fdd; color: #fff; font-size: 30rpx; font-weight: bold; padding: 18rpx 40rpx; border-radius: 12rpx; display: flex; align-items: center; }
 .play-btn .icon { margin-right: 10rpx; }
 .player-section { position: relative; z-index: 10; padding: 0 40rpx; margin-top: 20rpx; }
 .source-scroll { white-space: nowrap; margin-bottom: 30rpx; }
 .source-list { display: inline-flex; }
 .source-item { margin-right: 30rpx; color: #888; font-size: 26rpx; padding-bottom: 10rpx; }
-.source-item.active { color: #00d26a; font-weight: bold; }
+.source-item.active { color: #6f8fdd; font-weight: bold; }
 .episode-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16rpx; }
 .ep-item { background-color: rgba(255,255,255,0.05); color: #bbb; text-align: center; padding: 16rpx 0; font-size: 24rpx; border-radius: 8rpx; }
-.ep-item.active { background-color: #00d26a; color: #fff; font-weight: bold; }
+.ep-item.active { background-color: #6f8fdd; color: #fff; font-weight: bold; }
 .recommend-section { padding: 40rpx; }
 .section-title { font-size: 32rpx; font-weight: bold; margin-bottom: 20rpx; }
 .recommend-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20rpx; }
