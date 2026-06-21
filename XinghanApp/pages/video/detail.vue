@@ -10,20 +10,24 @@
     <view class="info-section">
       <text class="title">{{ video.title || '加载中...' }}</text>
       <view class="tags-row">
-        <text class="tag year">{{ video.publishYear || '未知' }}</text>
-        <text class="tag type">{{ video.subCategory || '视频' }}</text>
+        <text class="tag-text">{{ video.publishYear || '未知年份' }}</text>
+        <text class="dot">·</text>
         <text class="tag-text">{{ video.region || '未知地区' }}</text>
+        <text class="dot">·</text>
+        <text class="tag-text">{{ video.subCategory || '视频' }}</text>
+        <text class="dot">·</text>
         <text class="tag-text">共 {{ episodeList.length }} 集</text>
       </view>
 
       <view class="meta-info">
-        <text class="meta-line truncate-2">简介: {{ ext.description || '暂无简介' }}</text>
+        <text class="intro-title">剧情简介</text>
+        <text class="meta-line truncate-4">{{ ext.description || '暂无简介' }}</text>
       </view>
 
       <view class="action-row">
         <view class="play-btn" @click="handlePlay(currentEp)">
           <text class="icon">▶</text>
-          <text>立即播放</text>
+          <text>开始观看</text>
         </view>
       </view>
     </view>
@@ -32,7 +36,7 @@
       <scroll-view scroll-x class="source-scroll" :show-scrollbar="false">
         <view class="source-list">
           <view class="source-item" :class="{ active: currentSource === index }" v-for="(source, index) in sources" :key="index" @click="currentSource = index">
-            <text class="source-name">@ {{ source.name }}</text>
+            <text class="source-name">{{ source.name }}</text>
           </view>
         </view>
       </scroll-view>
@@ -45,7 +49,7 @@
     </view>
 
     <view class="recommend-section">
-      <view class="section-title">猜你喜欢</view>
+      <view class="section-title">相关推荐</view>
       <view class="recommend-grid">
         <view class="rec-card" v-for="rec in recommends" :key="rec.id" @click="goDetail(rec.id)">
           <image class="rec-poster" :src="rec.posterUrl || '/static/default-poster.png'" mode="aspectFill"></image>
@@ -155,33 +159,34 @@ const goDetail = (id) => {
 </script>
 
 <style scoped>
-.detail-container { min-height: 100vh; background-color: #111114; color: #fff; padding-bottom: 60rpx; position: relative; overflow-x: hidden; }
-.backdrop-wrapper { position: absolute; top: 0; left: 0; width: 100vw; height: 800rpx; z-index: 0; }
-.backdrop-img { width: 100%; height: 100%; opacity: 0.5; display: block; }
-.backdrop-mask { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, #111114 10%, rgba(17,17,20,0.4) 100%), linear-gradient(to top, #111114 0%, rgba(17,17,20,0) 100%); }
-.info-section { position: relative; z-index: 10; padding: 80rpx 40rpx 40rpx; margin-top: 100rpx; }
-.title { font-size: 64rpx; font-weight: bold; margin-bottom: 30rpx; display: block; }
-.tags-row { display: flex; align-items: center; flex-wrap: wrap; margin-bottom: 30rpx; font-size: 24rpx; }
-.tag { padding: 4rpx 12rpx; border-radius: 6rpx; margin-right: 16rpx; font-weight: bold; }
-.tag.year { background-color: #f39c12; color: #fff; }
-.tag.type { background-color: #00d26a; color: #fff; }
-.tag-text { color: #999; margin-right: 20rpx; }
-.meta-line { color: #bbb; font-size: 26rpx; line-height: 1.8; display: block; }
-.truncate-2 { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
-.action-row { display: flex; align-items: center; margin-top: 20rpx; }
-.play-btn { background-color: #00d26a; color: #fff; font-size: 30rpx; font-weight: bold; padding: 18rpx 40rpx; border-radius: 12rpx; display: flex; align-items: center; }
-.play-btn .icon { margin-right: 10rpx; }
+.detail-container { min-height: 100vh; background-color: #0b0f19; color: #fff; padding-bottom: 60rpx; position: relative; overflow-x: hidden; }
+.backdrop-wrapper { position: absolute; top: 0; left: 0; width: 100vw; height: 820rpx; z-index: 0; overflow: hidden; }
+.backdrop-img { width: 100%; height: 100%; opacity: 0.34; display: block; filter: blur(10rpx) saturate(0.9); transform: scale(1.05); }
+.backdrop-mask { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(11,15,25,0.96) 0%, rgba(11,15,25,0.28) 22%, rgba(11,15,25,0.45) 58%, #0b0f19 100%), linear-gradient(to right, rgba(11,15,25,0.72) 0%, rgba(11,15,25,0.08) 30%, rgba(11,15,25,0.08) 70%, rgba(11,15,25,0.72) 100%), radial-gradient(ellipse at center, rgba(11,15,25,0) 35%, rgba(11,15,25,0.42) 100%); }
+.info-section { position: relative; z-index: 10; padding: 80rpx 40rpx 36rpx; margin-top: 100rpx; }
+.title { font-size: 52rpx; font-weight: 700; line-height: 1.18; margin-bottom: 20rpx; display: block; letter-spacing: 1rpx; }
+.tags-row { display: flex; align-items: center; flex-wrap: wrap; margin-bottom: 34rpx; font-size: 24rpx; color: #aeb7c8; }
+.tag-text { color: #aeb7c8; line-height: 1.6; }
+.dot { color: #68748a; margin: 0 12rpx; }
+.meta-info { margin-top: 6rpx; }
+.intro-title { display: block; color: #edf1f8; font-size: 30rpx; font-weight: 700; margin-bottom: 12rpx; }
+.meta-line { color: #a5afc0; font-size: 26rpx; line-height: 1.85; display: block; }
+.truncate-4 { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; }
+.action-row { display: flex; align-items: center; margin-top: 30rpx; }
+.play-btn { background: linear-gradient(135deg, #fff7de 0%, #f2d28a 100%); color: #14100a; font-size: 29rpx; font-weight: 700; padding: 18rpx 46rpx; border-radius: 999rpx; display: flex; align-items: center; box-shadow: 0 12rpx 30rpx rgba(242, 210, 138, 0.22); }
+.play-btn .icon { margin-right: 12rpx; font-size: 24rpx; }
 .player-section { position: relative; z-index: 10; padding: 0 40rpx; margin-top: 20rpx; }
-.source-scroll { white-space: nowrap; margin-bottom: 30rpx; }
-.source-list { display: inline-flex; }
-.source-item { margin-right: 30rpx; color: #888; font-size: 26rpx; padding-bottom: 10rpx; }
-.source-item.active { color: #00d26a; font-weight: bold; }
-.episode-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16rpx; }
-.ep-item { background-color: rgba(255,255,255,0.05); color: #bbb; text-align: center; padding: 16rpx 0; font-size: 24rpx; border-radius: 8rpx; }
-.ep-item.active { background-color: #00d26a; color: #fff; font-weight: bold; }
-.recommend-section { padding: 40rpx; }
-.section-title { font-size: 32rpx; font-weight: bold; margin-bottom: 20rpx; }
-.recommend-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20rpx; }
-.rec-poster { width: 100%; height: 220rpx; border-radius: 10rpx; }
-.rec-title { display: block; margin-top: 8rpx; font-size: 24rpx; color: #ddd; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.source-scroll { white-space: nowrap; margin-bottom: 28rpx; }
+.source-list { display: inline-flex; padding-bottom: 4rpx; }
+.source-item { margin-right: 18rpx; color: #8a95a8; font-size: 25rpx; padding: 12rpx 22rpx; border-radius: 999rpx; background: rgba(255,255,255,0.05); border: 1rpx solid rgba(255,255,255,0.08); }
+.source-item.active { color: #f3d58e; background: rgba(243,213,142,0.10); border-color: rgba(243,213,142,0.34); font-weight: 600; }
+.episode-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14rpx; }
+.ep-item { background-color: #171d2a; border: 1rpx solid #242c3d; color: #c4cad6; text-align: center; padding: 16rpx 0; font-size: 24rpx; border-radius: 10rpx; }
+.ep-item.active { background-color: #f4f0e6; border-color: #f4f0e6; color: #12151c; font-weight: 700; }
+.recommend-section { padding: 42rpx 18rpx 0; position: relative; z-index: 10; }
+.section-title { font-size: 34rpx; font-weight: 700; margin-bottom: 16rpx; }
+.recommend-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14rpx; }
+.rec-card { background: #141a27; border-radius: 10rpx; overflow: hidden; border: 1rpx solid #20293a; }
+.rec-poster { width: 100%; height: 190rpx; display: block; }
+.rec-title { display: block; color: #e9edf5; font-size: 22rpx; padding: 10rpx; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 </style>
