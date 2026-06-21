@@ -56,9 +56,9 @@
     </view>
 
     <view class="loading-status">
-      <text v-if="loading">努力加载中...</text>
-      <text v-else-if="noMore && videoList.length > 0">已经到底啦</text>
-      <text v-else-if="videoList.length === 0">暂无相关视频</text>
+      <text v-if="loading">正在加载影片…</text>
+      <text v-else-if="noMore && videoList.length > 0">没有更多内容了</text>
+      <text v-else-if="videoList.length === 0">暂无符合条件的影片</text>
     </view>
   </view>
 </template>
@@ -162,21 +162,21 @@ onReachBottom(() => loadData(false));
 </script>
 
 <style scoped>
-.category-container { min-height: 100vh; background: #0b0f19; color: #fff; padding-top: 96rpx; }
-.filter-panel { background: #101622; padding: 20rpx 18rpx; border-bottom: 1rpx solid #202a3c; }
-.filter-row { display: flex; align-items: flex-start; margin-bottom: 14rpx; }
-.filter-row:last-child { margin-bottom: 0; }
-.filter-label { width: 70rpx; color: #6f7b94; font-size: 22rpx; margin-top: 6rpx; }
-.filter-items { flex: 1; display: flex; flex-wrap: wrap; gap: 10rpx; }
-.f-item { background: #1a2232; color: #9eabc4; font-size: 20rpx; padding: 8rpx 14rpx; border-radius: 8rpx; border: 1rpx solid transparent; }
-.f-item.active { color: #18d96b; border-color: #18d96b; background: rgba(24, 217, 107, 0.1); }
+.category-container { min-height: 100vh; background: #111111; color: #fff; padding-top: 96rpx; }
+.filter-panel { margin: 16rpx 18rpx 4rpx; padding: 16rpx 0; background: transparent; }
+.filter-row { display: flex; align-items: flex-start; padding: 14rpx 0; }
+.filter-row + .filter-row { border-top: 1rpx solid rgba(255, 255, 255, 0.04); }
+.filter-label { width: 70rpx; color: #777777; font-size: 22rpx; line-height: 52rpx; }
+.filter-items { flex: 1; display: flex; flex-wrap: wrap; gap: 12rpx 14rpx; }
+.f-item { background: transparent; color: #9a9a9a; font-size: 21rpx; line-height: 28rpx; padding: 12rpx 18rpx; border-radius: 999rpx; border: 1rpx solid transparent; }
+.f-item.active { color: #f2d07b; background: rgba(255, 255, 255, 0.08); border-color: rgba(242, 208, 123, 0.18); }
 .video-grid { padding: 16rpx 18rpx 20rpx; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14rpx; }
-.video-card { background: #141a27; border: 1rpx solid #212b3d; border-radius: 10rpx; overflow: hidden; }
+.video-card { background: #141414; border: 1rpx solid rgba(255, 255, 255, 0.06); border-radius: 10rpx; overflow: hidden; }
 .poster-wrap { position: relative; }
 .poster { width: 100%; height: 190rpx; }
-.tag-status { position: absolute; right: 8rpx; top: 8rpx; background: #18d96b; color: #fff; font-size: 18rpx; padding: 2rpx 7rpx; border-radius: 6rpx; }
+.tag-status { position: absolute; right: 8rpx; top: 8rpx; background: rgba(0, 0, 0, 0.58); color: #fff; font-size: 18rpx; padding: 3rpx 8rpx; border-radius: 6rpx; }
 .video-info { padding: 10rpx; }
-.video-title { display: block; color: #e8edf7; font-size: 22rpx; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.video-sub { display: block; margin-top: 6rpx; color: #7e8da8; font-size: 20rpx; }
-.loading-status { text-align: center; color: #6f809f; font-size: 22rpx; padding: 16rpx 0 24rpx; }
+.video-title { display: block; color: #eeeeee; font-size: 22rpx; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.video-sub { display: block; margin-top: 6rpx; color: #8a8a8a; font-size: 20rpx; }
+.loading-status { text-align: center; color: #777777; font-size: 22rpx; padding: 18rpx 0 28rpx; }
 </style>
