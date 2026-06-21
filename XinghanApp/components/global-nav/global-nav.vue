@@ -161,15 +161,47 @@ const submitLogin = async () => {
 .icon-text { color: #d4d8e2; font-size: 22rpx; }
 .app-btn { background: #18d96b; color: #fff; font-size: 22rpx; border-radius: 8rpx; height: 52rpx; line-height: 52rpx; padding: 0 18rpx; }
 
-.mask { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.68); backdrop-filter: blur(4rpx); z-index: 1001; display: flex; align-items: center; justify-content: center; }
-.login-dialog { width: 640rpx; background: #1A1A1A; border-radius: 20rpx; padding: 28rpx; border: 1rpx solid rgba(255, 255, 255, 0.08); }
+.mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.68);
+  -webkit-backdrop-filter: blur(4rpx);
+  backdrop-filter: blur(4rpx);
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-dialog {
+  width: 640rpx;
+  background: #1A1A1A;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.08);
+}
 .dialog-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18rpx; }
 .dialog-title { color: #fff; font-size: 36rpx; font-weight: 600; }
 .dialog-close { color: #c6ccda; font-size: 42rpx; }
-.input-group { background: rgba(255, 255, 255, 0.06); border-radius: 14rpx; margin-bottom: 16rpx; }
-.input-item { height: 88rpx; color: #cfd3dc; padding: 0 22rpx; font-size: 28rpx; }
+.input-group {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 14rpx;
+  margin-bottom: 16rpx;
+}
+.input-item {
+  height: 88rpx;
+  color: #cfd3dc;
+  padding: 0 22rpx;
+  font-size: 28rpx;
+}
 .ph-color { color: #8a8f9b; }
-.submit-btn { margin-top: 8rpx; background: #f2f2f2; color: #111; border-radius: 14rpx; font-size: 30rpx; font-weight: 600; }
+.submit-btn {
+  margin-top: 8rpx;
+  background: #f3d58a;
+  color: #111;
+  border-radius: 14rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+}
 .submit-btn::after { border: none; }
 .dialog-footer { margin-top: 16rpx; display: flex; justify-content: space-between; }
 .link { color: #d7c08a; font-size: 22rpx; }
