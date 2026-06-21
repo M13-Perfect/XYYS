@@ -41,6 +41,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 || path.equals("/app/video/banner")
                 || path.equals("/app/video/recommend")
                 || path.startsWith("/app/video/detail/")
+                || path.startsWith("/app/video/play/")
                 || path.startsWith("/public/");
     }
 
