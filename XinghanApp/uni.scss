@@ -15,26 +15,26 @@
 /* 颜色变量 */
 
 /* 行为相关颜色 */
-$uni-color-primary: #007aff;
-$uni-color-success: #4cd964;
+$uni-color-primary: #D6B16A;
+$uni-color-success: #C9A86A;
 $uni-color-warning: #f0ad4e;
-$uni-color-error: #dd524d;
+$uni-color-error: #C44536;
 
 /* 文字基本颜色 */
-$uni-text-color:#333;//基本色
+$uni-text-color:#F5F5F1;//基本色
 $uni-text-color-inverse:#fff;//反色
-$uni-text-color-grey:#999;//辅助灰色，如加载更多的提示信息
-$uni-text-color-placeholder: #808080;
+$uni-text-color-grey:#B8B8B8;//辅助灰色，如加载更多的提示信息
+$uni-text-color-placeholder: #7A7A7A;
 $uni-text-color-disable:#c0c0c0;
 
 /* 背景颜色 */
-$uni-bg-color:#ffffff;
-$uni-bg-color-grey:#f8f8f8;
-$uni-bg-color-hover:#f1f1f1;//点击状态颜色
-$uni-bg-color-mask:rgba(0, 0, 0, 0.4);//遮罩颜色
+$uni-bg-color:#111111;
+$uni-bg-color-grey:#141414;
+$uni-bg-color-hover:#202020;//点击状态颜色
+$uni-bg-color-mask:rgba(0, 0, 0, 0.56);//遮罩颜色
 
 /* 边框颜色 */
-$uni-border-color:#c8c7cc;
+$uni-border-color:rgba(255, 255, 255, 0.08);
 
 /* 尺寸变量 */
 
@@ -49,9 +49,9 @@ $uni-img-size-base:26px;
 $uni-img-size-lg:40px;
 
 /* Border Radius */
-$uni-border-radius-sm: 2px;
-$uni-border-radius-base: 3px;
-$uni-border-radius-lg: 6px;
+$uni-border-radius-sm: 6rpx;
+$uni-border-radius-base: 12rpx;
+$uni-border-radius-lg: 20rpx;
 $uni-border-radius-circle: 50%;
 
 /* 水平间距 */
@@ -68,9 +68,133 @@ $uni-spacing-col-lg: 12px;
 $uni-opacity-disabled: 0.3; // 组件禁用态的透明度
 
 /* 文章场景相关 */
-$uni-color-title: #2C405A; // 文章标题颜色
+$uni-color-title: #F5F5F1; // 文章标题颜色
 $uni-font-size-title:20px;
-$uni-color-subtitle: #555555; // 二级标题颜色
+$uni-color-subtitle: #B8B8B8; // 二级标题颜色
 $uni-font-size-subtitle:26px;
-$uni-color-paragraph: #3F536E; // 文章段落颜色
+$uni-color-paragraph: #B8B8B8; // 文章段落颜色
 $uni-font-size-paragraph:15px;
+/* Xinghan 全局设计变量：深色视觉基调优先 */
+$xh-color-bg: #111111;
+$xh-color-bg-soft: #141414;
+$xh-color-card: #1A1A1A;
+$xh-color-card-muted: #202020;
+$xh-color-text-primary: #F5F5F1;
+$xh-color-text-secondary: #B8B8B8;
+$xh-color-text-muted: #7A7A7A;
+$xh-color-border: rgba(255, 255, 255, 0.08);
+$xh-color-accent: #D6B16A;
+$xh-color-accent-muted: #C9A86A;
+$xh-color-danger: #C44536;
+$xh-color-overlay: rgba(0, 0, 0, 0.56);
+$xh-color-surface-translucent: rgba(255, 255, 255, 0.06);
+
+/* 字体 */
+$xh-font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+$xh-font-size-caption: 22rpx;
+$xh-font-size-sm: 24rpx;
+$xh-font-size-base: 28rpx;
+$xh-font-size-lg: 32rpx;
+$xh-font-size-title: 40rpx;
+$xh-line-height-base: 1.5;
+
+/* 圆角 */
+$xh-radius-poster: 12rpx;
+$xh-radius-button-pill: 999rpx;
+$xh-radius-button: 14rpx;
+$xh-radius-popup: 20rpx;
+$xh-radius-card: 16rpx;
+
+/* 间距 */
+$xh-spacing-xs: 8rpx;
+$xh-spacing-sm: 12rpx;
+$xh-spacing-md: 20rpx;
+$xh-spacing-lg: 32rpx;
+$xh-spacing-xl: 48rpx;
+
+/* 阴影：避免强阴影，仅用于关键浮层/卡片 */
+$xh-shadow-card: 0 20rpx 60rpx rgba(0, 0, 0, 0.28);
+$xh-shadow-soft: 0 12rpx 36rpx rgba(0, 0, 0, 0.18);
+
+/* 公共样式 */
+.xh-page {
+	min-height: 100vh;
+	background: $xh-color-bg;
+	color: $xh-color-text-primary;
+	font-family: $xh-font-family;
+	line-height: $xh-line-height-base;
+}
+
+.xh-page--soft {
+	background: $xh-color-bg-soft;
+}
+
+.xh-card {
+	background: $xh-color-card;
+	border: 1rpx solid $xh-color-border;
+	border-radius: $xh-radius-card;
+	box-shadow: $xh-shadow-soft;
+}
+
+.xh-card--muted {
+	background: $xh-color-card-muted;
+	box-shadow: none;
+}
+
+.xh-poster-card {
+	overflow: hidden;
+	background: $xh-color-card;
+	border-radius: $xh-radius-poster;
+}
+
+.xh-popup {
+	background: $xh-color-card;
+	border-radius: $xh-radius-popup;
+	box-shadow: $xh-shadow-card;
+}
+
+.xh-text-primary {
+	color: $xh-color-text-primary;
+}
+
+.xh-text-secondary {
+	color: $xh-color-text-secondary;
+}
+
+.xh-text-muted {
+	color: $xh-color-text-muted;
+}
+
+.xh-accent {
+	color: $xh-color-accent;
+}
+
+.xh-danger {
+	color: $xh-color-danger;
+}
+
+.xh-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 $xh-spacing-lg;
+	min-height: 72rpx;
+	border: 0;
+	border-radius: $xh-radius-button-pill;
+	background: rgba(214, 177, 106, 0.14);
+	color: $xh-color-accent;
+	font-size: $xh-font-size-base;
+}
+
+.xh-button--solid {
+	background: $xh-color-accent;
+	color: $xh-color-bg;
+}
+
+.xh-button--rect {
+	border-radius: $xh-radius-button;
+}
+
+.xh-hairline {
+	border: 1rpx solid $xh-color-border;
+}
