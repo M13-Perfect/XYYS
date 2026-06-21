@@ -2,7 +2,7 @@
   <view class="nav-container" :class="{ transparent: isTransparent }">
     <view class="nav-left">
       <view class="logo-box" @click="goHome">
-        <text class="logo-icon">🎬</text>
+        <text class="logo-mark">星瀚</text>
         <text class="logo-text">星瀚影视</text>
       </view>
 
@@ -18,11 +18,12 @@
 
     <view class="nav-right">
       <view class="search-box" @click="goCategory('全部')">
-        <text class="search-placeholder">搜片名</text>
+        <text class="search-icon">⌕</text>
+        <text class="search-placeholder">搜索电影、剧集、演员</text>
       </view>
 
       <view class="icon-btn" @click="openLoginDialog">
-        <text class="icon-text">{{ isLogin ? '👤' : '登录' }}</text>
+        <text class="icon-text">{{ isLogin ? '我的' : '登录' }}</text>
       </view>
 
       <view class="app-btn">APP</view>
@@ -135,8 +136,8 @@ const submitLogin = async () => {
 <style scoped>
 .nav-container {
   height: 96rpx;
-  background: #0d1018;
-  border-bottom: 1rpx solid #20242e;
+  background: rgba(17, 17, 17, 0.92);
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.06);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -146,20 +147,26 @@ const submitLogin = async () => {
   left: 0;
   right: 0;
   z-index: 999;
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
 }
 .nav-container.transparent {
-  background: linear-gradient(to bottom, rgba(13, 16, 24, 0.94), rgba(13, 16, 24, 0));
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.76), rgba(0, 0, 0, 0));
+  border-bottom-color: transparent;
 }
 .nav-left,.nav-right { display: flex; align-items: center; }
-.logo-text { font-size: 34rpx; color: #18d96b; font-weight: 700; margin-right: 30rpx; }
+.logo-box { display: flex; align-items: center; margin-right: 30rpx; }
+.logo-mark { color: #d6b16a; font-size: 24rpx; font-weight: 700; margin-right: 12rpx; letter-spacing: 2rpx; }
+.logo-text { font-size: 34rpx; color: #f5f5f1; font-weight: 700; }
 .menu-list { display: flex; gap: 22rpx; }
-.menu-item { color: #a9b0bf; font-size: 24rpx; }
-.menu-item.active { color: #18d96b; }
-.search-box { width: 190rpx; height: 52rpx; border-radius: 10rpx; background: #1a1f2b; display: flex; align-items: center; padding: 0 16rpx; margin-right: 14rpx; }
-.search-placeholder { color: #667085; font-size: 22rpx; }
-.icon-btn { background: #1a1f2b; border-radius: 8rpx; height: 52rpx; padding: 0 16rpx; display: flex; align-items: center; margin-right: 12rpx; }
-.icon-text { color: #d4d8e2; font-size: 22rpx; }
-.app-btn { background: #18d96b; color: #fff; font-size: 22rpx; border-radius: 8rpx; height: 52rpx; line-height: 52rpx; padding: 0 18rpx; }
+.menu-item { color: #b8b8b8; font-size: 24rpx; }
+.menu-item.active { color: #d6b16a; font-weight: 600; }
+.search-box { width: 260rpx; height: 52rpx; border-radius: 999rpx; background: rgba(255, 255, 255, 0.08); display: flex; align-items: center; padding: 0 18rpx; margin-right: 14rpx; }
+.search-icon { color: #b8b8b8; font-size: 24rpx; margin-right: 8rpx; }
+.search-placeholder { color: #8c8c8c; font-size: 22rpx; }
+.icon-btn { height: 52rpx; padding: 0 10rpx; display: flex; align-items: center; margin-right: 12rpx; }
+.icon-text { color: #f5f5f1; font-size: 24rpx; }
+.app-btn { color: #d6b16a; font-size: 22rpx; border: 1rpx solid rgba(214, 177, 106, 0.5); border-radius: 999rpx; height: 52rpx; line-height: 52rpx; padding: 0 18rpx; }
 
 .mask { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.55); z-index: 1001; display: flex; align-items: center; justify-content: center; }
 .login-dialog { width: 640rpx; background: #10151f; border-radius: 14rpx; padding: 28rpx; border: 1rpx solid #222839; }
