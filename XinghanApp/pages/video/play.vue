@@ -65,20 +65,6 @@ const paused = ref(false);
 const currentTime = ref(0);
 const duration = ref(0);
 
-const parseEpisodeItems = (playUrlRaw) => {
-  const parts = String(playUrlRaw || '').split('#').map((s) => s.trim()).filter(Boolean);
-  if (!parts.length) return [{ index: 1, name: '01', url: '' }];
-
-  return parts.map((item, idx) => {
-    const [name, url] = item.split('$');
-    return {
-      index: idx + 1,
-      name: (name || `${idx + 1}`).slice(0, 8),
-      url: (url || name || '').trim()
-    };
-  });
-};
-
 const initVideoCtx = () => {
   videoCtx.value = uni.createVideoContext('myVideo');
 };
@@ -117,19 +103,35 @@ const seekBy = (delta) => {
   currentTime.value = target;
 };
 
-const loadVideoResource = async () => {
-  const detail = await request({ url: `/app/video/detail/${videoId.value}` });
-  if (!detail) return;
+const normalizeEpisodes = (episodes) => {
+  if (!Array.isArray(episodes) || !episodes.length) {
+    return [{ index: 1, name: '01' }];
+  }
 
-  videoTitle.value = detail.title || '视频播放';
-  posterUrl.value = detail.posterUrl || '/static/default-poster.png';
-  episodeList.value = parseEpisodeItems(detail.playUrl);
+  return episodes.map((item, idx) => ({
+    index: Number(item.index) || idx + 1,
+    name: String(item.name || idx + 1).slice(0, 8).padStart(2, '0')
+  }));
+};
 
-  const hit = episodeList.value.find((e) => e.index === currentEp.value) || episodeList.value[0];
-  currentEp.value = hit.index;
-  playUrl.value = hit.url;
+const loadVideoResource = async (ep = currentEp.value) => {
+  if (videoCtx.value) {
+    videoCtx.value.pause();
+  }
 
-  const format = (detail.playFormat || '').toLowerCase();
+  const playInfo = await request({
+    url: `/app/video/play/${videoId.value}`,
+    data: { ep }
+  });
+  if (!playInfo) return;
+
+  videoTitle.value = playInfo.title || '视频播放';
+  posterUrl.value = playInfo.posterUrl || '/static/default-poster.png';
+  episodeList.value = normalizeEpisodes(playInfo.episodes);
+  currentEp.value = Number(playInfo.currentEp) || ep || 1;
+  playUrl.value = playInfo.currentUrl || '';
+
+  const format = (playInfo.format || '').toLowerCase();
   isM3u8.value = format.includes('m3u8') || (playUrl.value || '').includes('.m3u8');
 
   if (!playUrl.value) {
@@ -162,12 +164,11 @@ const changeEpisode = async (ep) => {
   if (currentEp.value === ep) return;
   const target = episodeList.value.find((item) => item.index === ep);
   if (!target) return;
-  currentEp.value = ep;
-  playUrl.value = target.url;
-  await nextTick();
-  initVideoCtx();
-  paused.value = false;
-  currentTime.value = 0;
+  try {
+    await loadVideoResource(ep);
+  } catch (e) {
+    console.error('切换剧集失败', e);
+  }
 };
 </script>
 
